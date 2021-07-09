@@ -1,0 +1,4 @@
+.friendProfiles {
+    display: grid;
+    grid-template-columns:  80px 80px 80px ;
+}

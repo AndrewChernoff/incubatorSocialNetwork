@@ -1,0 +1,15 @@
+ .friendsList img {
+    width: 40px;
+    height: 40px;
+    border-radius: 30px;
+} 
+
+.friendsList {
+    padding-top: 100px;
+}
+
+.friendTitle {
+    font-size: 30px;
+    padding-bottom: 40px;
+}
+
