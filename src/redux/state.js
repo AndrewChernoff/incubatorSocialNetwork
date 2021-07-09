@@ -36,7 +36,7 @@ let store = {
         { message: 'Yo', id: '4' },
         { message: 'Yo', id: '5' },
       ],
-      newMessageText: 'input your message'
+      newMessageText: ''
     },
 
     friends: [
@@ -105,7 +105,7 @@ let store = {
       this._state.dialogsComponent.newMessageText = '';
       this._renderEntireTree(this._state);
     }
-    else if (action.type === 'Update-Message-Text') {
+    else if (action.type === 'Send-Message') {
       this._state.dialogsComponent.newMessageText = action.newText;
       this._renderEntireTree(this._state);
     }
@@ -113,8 +113,11 @@ let store = {
 }
 
 export const addPostActionCreator = () => ({ type: Add_Post })
-
 export const updatePostTextCreator = (text) => ({ type: Update_Post_Text, newText: text })
+
+export const textNewMessageActionCreator = (text) =>  ({type: 'Text-New-Message', message: text})
+export const sendMessageActionCreator = (text) =>  ({type:'Send-Message', newText: text})
+
 
 export default store;
 
