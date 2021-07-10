@@ -1,6 +1,9 @@
 const Add_Post = 'Add-Post';
 const Update_Post_Text = 'Update-Post-Text';
 
+const Send_Message = 'Send-Message';
+const Update_Message_Body = 'Update-Message-Body';
+
 let store = {
   _renderEntireTree() {
     console.log('State changed');
@@ -98,22 +101,25 @@ let store = {
       this._renderEntireTree(this._state);
     }
     else if (action.type === 'Send-Message') {
-      let body = {
-        message: this._state.dialogsComponent.newMessageText,
+      let newMessage = {
+        message:  this._state.dialogsComponent.newMessageText,
         id: '6'
       }
-      this._state.dialogsComponent.message.push(body);
+      this._state.dialogsComponent.message.push(newMessage);
       this._state.dialogsComponent.newMessageText = '';
       this._renderEntireTree(this._state);
     }
     else if (action.type === 'Update-Message-Body') {
-      this._state.dialogsComponent.newMessageText = action.body;
-      this._renderEntiretree(this._state);
+      this._state.dialogsComponent.newMessageText = action.newText;
+      this._renderEntireTree(this._state);
     }
   }
 }
 
-export const addPostActionCreator = () => ({ type: Add_Post })
-export const updatePostTextCreator = (text) => ({ type: Update_Post_Text, newText: text })
+export const addPostActionCreator = () => ({ type: Add_Post });
+export const updatePostTextCreator = (text) => ({ type: Update_Post_Text, newText: text });
+
+export const sendMessageActionCreator = () => ({type: Send_Message});
+export const updateMessageBodyActionCreator = (text) => ({type:Update_Message_Body, newText: text });
 
 export default store;
