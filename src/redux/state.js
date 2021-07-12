@@ -2,12 +2,6 @@ import dialogReducer from "./dialogReducer";
 import profileReducer from "./profileReducer";
 import sidebarReducer from "./sidebarReducer";
 
-const Add_Post = 'Add-Post';
-const Update_Post_Text = 'Update-Post-Text';
-
-const Send_Message = 'Send-Message';
-const Update_Message_Body = 'Update-Message-Body';
-
 let store = {
   _callSubscriber() {
     console.log('State changed');
@@ -92,11 +86,5 @@ let store = {
     }    */
   }
 }
-
-export const addPostActionCreator = () => ({ type: Add_Post });
-export const updatePostTextCreator = (text) => ({ type: Update_Post_Text, newText: text });
-
-export const sendMessageActionCreator = () => ({type: Send_Message});
-export const updateMessageBodyActionCreator = (text) => ({type:Update_Message_Body, newText: text });
 
 export default store;
