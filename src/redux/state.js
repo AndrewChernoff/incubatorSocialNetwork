@@ -1,3 +1,7 @@
+import dialogReducer from "./dialogReducer";
+import profileReducer from "./profileReducer";
+import sidebarReducer from "./sidebarReducer";
+
 const Add_Post = 'Add-Post';
 const Update_Post_Text = 'Update-Post-Text';
 
@@ -5,12 +9,12 @@ const Send_Message = 'Send-Message';
 const Update_Message_Body = 'Update-Message-Body';
 
 let store = {
-  _renderEntireTree() {
+  _callSubscriber() {
     console.log('State changed');
   },
 
   subscribe(observer) {
-    this._renderEntireTree = observer;
+    this._callSubscriber = observer;
   },
 
   _state: {
@@ -42,7 +46,7 @@ let store = {
       newMessageText: ''
     },
 
-    friends: [
+    sidebar: [
       { name: 'Andrew', ava: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNVT7KXYQ8uEG3LVXleY_e5t--XmqCby2lFQ&usqp=CAU' },
       { name: 'Sasha', ava: 'https://static.1tv.ru/uploads/photo/image/2/huge/4062_huge_876c41f50e.jpg' },
       { name: 'Sveta', ava: 'https://n1s2.starhit.ru/6a/46/ae/6a46aeed947a183d67d1bc48211151bf/480x496_0_2bbde84177c9ff1c2299a26a0f69f69c@480x496_0xac120003_4430520541578509619.jpg' }
@@ -53,40 +57,13 @@ let store = {
     return this._state;
   },
 
-  /*  addPost() {
-     let newPost = {
-       id: 3,
-       message: this._state.profileComponent.newPostText,
-       likeCount: '0'
-     };
-     this._state.profileComponent.posts.push(newPost);
-     this._state.profileComponent.newPostText = '';
-     this._renderEntireTree(this._state);
-   },
- 
-   updatePostText(newText) {
-     this._state.profileComponent.newPostText = newText;
-     this._renderEntireTree(this._state);
-   }, */
-
-  /* textNewMessage(message) {
-    let newMessage = {
-      message: message,
-      id: '6'
-    }
-    this._state.dialogsComponent.message.push(newMessage);
-    this._state.dialogsComponent.newMessageText = '';
-    this._renderEntireTree(this._state);
-  },
-
-  updateMessageText(newText) {
-    this._state.dialogsComponent.newMessageText = newText;
-    this._renderEntireTree(this._state);
-  }, */
-
   dispatch(action) {
-    debugger
-    if (action.type === 'Add-Post') {
+    this._state.profileComponent = profileReducer(this._state.profileComponent, action);
+    this._state.dialogsComponent = dialogReducer(this._state.dialogsComponent, action);
+    this._state.sidebar = sidebarReducer(this._state.sidebar, action);
+    this._callSubscriber(this._state);
+
+   /* if (action.type === Add_Post) {
       let newPost = {
         id: 3,
         message: this._state.profileComponent.newPostText,
@@ -94,25 +71,25 @@ let store = {
       };
       this._state.profileComponent.posts.push(newPost);
       this._state.profileComponent.newPostText = '';
-      this._renderEntireTree(this._state);
+      this._callSubscriber(this._state);
     }
-    else if (action.type === 'Update-Post-Text') {
+    else if (action.type === Update_Post_Text) {
       this._state.profileComponent.newPostText = action.newText;
-      this._renderEntireTree(this._state);
+      this._callSubscriber(this._state);
     }
-    else if (action.type === 'Send-Message') {
+    else if (action.type === Send_Message) {
       let newMessage = {
         message:  this._state.dialogsComponent.newMessageText,
         id: '6'
       }
       this._state.dialogsComponent.message.push(newMessage);
       this._state.dialogsComponent.newMessageText = '';
-      this._renderEntireTree(this._state);
+      this._callSubscriber(this._state);
     }
-    else if (action.type === 'Update-Message-Body') {
+    else if (action.type === Update_Message_Body) {
       this._state.dialogsComponent.newMessageText = action.newText;
-      this._renderEntireTree(this._state);
-    }
+      this._callSubscriber(this._state);
+    }    */
   }
 }
 

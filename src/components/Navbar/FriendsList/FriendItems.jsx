@@ -3,14 +3,14 @@ import FriendItem from './FriendItem';
 import s from './FriendItems.module.css';
 
 const FriendItems = (props) => {
+  
+  let friendsElements = props.sidebar.map(friend => <FriendItem name={friend.name} ava={friend.ava} />)
 
-let friendsElements = props.friends.map(friend => <FriendItem name={friend.name} ava={friend.ava}/>)
-
-return (
+  return (
     <div className={s.friendProfiles}>
-    {friendsElements}
-        </div>
+      {friendsElements}
+    </div>
   )
 }
 
-export default FriendItems; 
+export default FriendItems;
