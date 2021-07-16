@@ -11,15 +11,18 @@ import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 
 const App = (props) => {
+  debugger
   return (
     <BrowserRouter>
       <div className='app-wrapper'>
         <Header />
         <Navbar  sidebar={props.state} /> 
         <div class='app-wrapper-content'>
-          <Route path='/profile' render={() => <Profile state={props.state.profileComponent}
-            dispatch={props.dispatch}
-            newPostText={props.state.profileComponent} />} />
+          <Route path='/profile' render={() => <Profile 
+          store={props.store}
+          /*state={props.state.profileComponent} */
+            /* dispatch={props.dispatch} */
+            /* newPostText={props.state.profileComponent} */ />} />
           <Route path='/dialogs' render={() => <Dialogs state={props.state.dialogsComponent}
             dispatch={props.dispatch}
             newMessageText={props.state.dialogsComponent.newMessageText} />} />

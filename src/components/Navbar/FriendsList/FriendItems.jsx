@@ -3,7 +3,7 @@ import FriendItem from './FriendItem';
 import s from './FriendItems.module.css';
 
 const FriendItems = (props) => {
-  debugger
+  
   //let friendsElements = props.dispatch.map(friend => <FriendItem name={friend.name} ava={friend.ava} />)
   return (
     <div className={s.friendProfiles}>
