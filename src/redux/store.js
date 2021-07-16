@@ -56,34 +56,6 @@ let store = {
     this._state.dialogsComponent = dialogReducer(this._state.dialogsComponent, action);
     this._state.sidebar = sidebarReducer(this._state.sidebar, action);
     this._callSubscriber(this._state);
-
-   /* if (action.type === Add_Post) {
-      let newPost = {
-        id: 3,
-        message: this._state.profileComponent.newPostText,
-        likeCount: '0'
-      };
-      this._state.profileComponent.posts.push(newPost);
-      this._state.profileComponent.newPostText = '';
-      this._callSubscriber(this._state);
-    }
-    else if (action.type === Update_Post_Text) {
-      this._state.profileComponent.newPostText = action.newText;
-      this._callSubscriber(this._state);
-    }
-    else if (action.type === Send_Message) {
-      let newMessage = {
-        message:  this._state.dialogsComponent.newMessageText,
-        id: '6'
-      }
-      this._state.dialogsComponent.message.push(newMessage);
-      this._state.dialogsComponent.newMessageText = '';
-      this._callSubscriber(this._state);
-    }
-    else if (action.type === Update_Message_Body) {
-      this._state.dialogsComponent.newMessageText = action.newText;
-      this._callSubscriber(this._state);
-    }    */
   }
 }
 
