@@ -6,7 +6,6 @@ const DialogsContainer = (props) => {
     let state = props.state;
     
     let onNewMessageChange = (text) => {
-       //let text = e.target.value;
         props.dispatch(updateMessageBodyActionCreator(text));
     }
     
