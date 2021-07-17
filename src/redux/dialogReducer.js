@@ -40,5 +40,4 @@ const dialogReducer = (state = initialState, action) => {
 export const sendMessageActionCreator = () => ({type: Send_Message});
 export const updateMessageBodyActionCreator = (text) => ({type:Update_Message_Body, newText: text });
 
-
 export default dialogReducer;
