@@ -5,12 +5,10 @@ import MyPostsContainer from './MyPosts/Post/MyPostsContainer';
 import s from './Profile.module.css';
 
 const Profile = (props) => { 
-  debugger
   return (
     <div>
       <ProfileInfo/>
-
-       <MyPostsContainer store={props.store}/>
+      <MyPostsContainer /* store={props.store} *//>
     </div>
   ) 
 }
