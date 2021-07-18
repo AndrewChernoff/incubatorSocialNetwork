@@ -19,6 +19,7 @@ let renderEntireTree = (state) => {
   );
 }
 
+
 renderEntireTree(store.getState());
 
 store.subscribe(() => {
