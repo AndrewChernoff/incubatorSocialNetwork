@@ -13,7 +13,7 @@ import DialogsContainer from './components/Dialogs/DialogsContainer';
 
 const App = (props) => {
   return (
-    <BrowserRouter>
+   // <BrowserRouter>
       <div className='app-wrapper'>
         <Header />
         <Navbar  sidebar={props.state} /> 
@@ -26,7 +26,7 @@ const App = (props) => {
           <Route path='/settings' render={() => <Settings />} />
         </div>
       </div>
-    </BrowserRouter>
+    //</BrowserRouter>
 
   );
 }
