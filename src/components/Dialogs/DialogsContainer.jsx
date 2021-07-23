@@ -4,7 +4,7 @@ import { sendMessageActionCreator, updateMessageBodyActionCreator } from '../../
 import StoreContext from '../../storeContext';
 import Dialogs from './Dialogs';
 
-/* const DialogsContainer = (props) => {
+const DialogsContainer = (props) => {
     return (
         <StoreContext.Consumer> 
             {
@@ -24,9 +24,9 @@ import Dialogs from './Dialogs';
         }
         </StoreContext.Consumer>
     )
-} */
+} 
 
-const mapStateToProps = (state) => {
+/* const mapStateToProps = (state) => {
     return { dialogsComponent: state.dialogsComponent }
 }
 
@@ -41,6 +41,6 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs); */
 
 export default DialogsContainer;

@@ -5,7 +5,7 @@ import { updatePostTextCreator } from '../../../../redux/profileReducer';
 import StoreContext from '../../../../storeContext';
 import MyPosts from './MyPosts';
 
-/* const MyPostsContainer = (props) => {
+const MyPostsContainer = (props) => {
 
     return (
         <StoreContext.Consumer> 
@@ -30,9 +30,9 @@ import MyPosts from './MyPosts';
         }
         </StoreContext.Consumer>
     )
-} */
+} 
 
-const mapStateToProps = (state) => {
+/* const mapStateToProps = (state) => {
     return { 
         post: state.profileComponent.posts,
         newPostText: state.profileComponent.newPostText
@@ -51,6 +51,6 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
+const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts); */
 
 export default MyPostsContainer;
