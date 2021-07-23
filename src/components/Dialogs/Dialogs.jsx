@@ -5,11 +5,10 @@ import Message from './Message/Message';
 import { sendMessageActionCreator, updateMessageBodyActionCreator } from '../../redux/dialogReducer';
 
 const Dialogs = (props) => {
-    //let state = props.store.getState();
-    let state = props.state;
-    let dialogElements = state.dialogsComponent.dialogs.map(dialogs => <DialogItem name={dialogs.name} id={dialogs.id} />);
-    let messageElements = state.dialogsComponent.message.map(message => <Message message={message.message} />);
-    let newMessageText = state.dialogsComponent.newMessageText;
+    let state = props.dialogsComponent;
+    let dialogElements = state.dialogs.map(dialogs => <DialogItem name={dialogs.name} id={dialogs.id} />);
+    let messageElements = state.message.map(message => <Message message={message.message} />);
+    let newMessageText = state.newMessageText;
     
     let onNewMessageChange = (e) => {
        let text = e.target.value;
