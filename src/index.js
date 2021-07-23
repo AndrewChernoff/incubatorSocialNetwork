@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './redux/redux-store';
-import StoreContext, { Provider } from './storeContext';
+import StoreContext, { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
 let renderEntireTree = (state) => {
