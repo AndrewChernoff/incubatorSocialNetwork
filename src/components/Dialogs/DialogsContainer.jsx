@@ -28,6 +28,7 @@ import Dialogs from './Dialogs';
 let mapStateToProps = (state) => {
     return { dialogsComponent: state.dialogsComponent }
 }
+
 let mapStateToDispatch = (dispatch) => {
     return {
         updateNewMessageBody: () => {
