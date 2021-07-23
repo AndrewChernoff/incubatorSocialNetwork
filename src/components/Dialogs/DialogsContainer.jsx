@@ -4,7 +4,7 @@ import { sendMessageActionCreator, updateMessageBodyActionCreator } from '../../
 import StoreContext from '../../storeContext';
 import Dialogs from './Dialogs';
 
-const DialogsContainer = (props) => {
+/* const DialogsContainer = (props) => {
     return (
         <StoreContext.Consumer> 
             {
@@ -25,12 +25,14 @@ const DialogsContainer = (props) => {
         </StoreContext.Consumer>
     )
 } 
-
-/* const mapStateToProps = (state) => {
-    return { dialogsComponent: state.dialogsComponent }
+ */
+let mapStateToProps = (state) => {
+    return { 
+        dialogsComponent: state.dialogsComponent 
+    }
 }
 
-const mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = (dispatch) => {
     return {
         updateNewMessageBody: () => {
             dispatch(sendMessageActionCreator());
@@ -41,6 +43,6 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs); */
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
 
 export default DialogsContainer;
