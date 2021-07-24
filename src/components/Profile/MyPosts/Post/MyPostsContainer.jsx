@@ -32,7 +32,6 @@ import MyPosts from './MyPosts';
     )
 } */
 
-
 let mapStateToProps = (state) => {
     return { 
         newPostText: state.profileComponent.newPostText,
