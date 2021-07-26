@@ -5,7 +5,7 @@ import Post from './Post';
 //import { updatePostTextCreator } from '../../../../redux/profileReducer';
 
 const MyPosts = (props) => {
-  let postElements = props.posts.map(p => <Post message={p.message} likeCount={p.likeCount} />);
+  let postElements = props.post.map(p => <Post message={p.message} likeCount={p.likeCount} />);
   let newPostElement = React.createRef();
 
   let onAddPost = () => {

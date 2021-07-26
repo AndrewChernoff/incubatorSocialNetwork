@@ -8,7 +8,7 @@ const FriendList = (props) => {
             Friends
         </div>
 
-        <FriendItems sidebar={props.sidebar}/>
+        <FriendItems /* sidebar={props.sidebar} *//>
     </div>
 }
 
