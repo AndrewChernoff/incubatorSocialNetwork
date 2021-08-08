@@ -1,14 +1,14 @@
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 
 let initialState = {
-    users: [
-        /* { id: 1, photoURL: 'https://yt3.ggpht.com/ytc/AAUvwnihEIew1x--ivyCNeGwa13y-FShBYm9rGl_sXxVEg=s800-c-k-c0x00ffffff-no-rj', followed: false, fullName: 'Andrew Chernoff', status: 'Everything is awesome', location: { country: 'USA', city: 'Chicago' } },
-        { id: 2, photoURL: 'https://yt3.ggpht.com/ytc/AAUvwnihEIew1x--ivyCNeGwa13y-FShBYm9rGl_sXxVEg=s800-c-k-c0x00ffffff-no-rj', followed: true, fullName: 'Artemus Dolgin', status: 'Chudila from Zhytomir', location: { country: 'USA', city: 'Los Andgeles' } },
-        { id: 3, photoURL: 'https://yt3.ggpht.com/ytc/AAUvwnihEIew1x--ivyCNeGwa13y-FShBYm9rGl_sXxVEg=s800-c-k-c0x00ffffff-no-rj', followed: true, fullName: 'Serega Rastorguev', status: 'That was it', location: { country: 'USA', city: 'Los Andgeles' } },
-        { id: 4, photoURL: 'https://yt3.ggpht.com/ytc/AAUvwnihEIew1x--ivyCNeGwa13y-FShBYm9rGl_sXxVEg=s800-c-k-c0x00ffffff-no-rj', followed: false, fullName: 'Alisher Abdulloev', status: 'Assalam Aleikum, pharmasists', location: { country: 'Germany', city: 'Berlin' } }
-    */  ] 
+    users: [],
+    pageSize: 5,
+    totalUsersCount: 19,
+    currentPage: 2
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -38,8 +38,20 @@ const usersReducer = (state = initialState, action) => {
         case SET_USERS:
             return {
                 ...state,
-                users: [...state.users, ...action.users]
+                users: action.users
             }
+
+        case SET_CURRENT_PAGE: 
+        return {
+            ...state,
+            currentPage: action.pageNumber
+        }
+
+        case SET_TOTAL_USERS_COUNT: 
+        return {
+            ...state,
+            totalUsersCount: action.count
+        }
 
         default: return state;
     }
@@ -48,5 +60,7 @@ const usersReducer = (state = initialState, action) => {
 export const followAC = (userID) => ({ type: FOLLOW, userID });
 export const unfollowAC = (userID) => ({ type: UNFOLLOW, userID });
 export const setUsersAC = (users) => ({ type: SET_USERS, users });
+export const setCurrentPageAC = (pageNumber) => ({ type: SET_CURRENT_PAGE, pageNumber });
+export const setTotalUsersCountAC = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, count: totalUsersCount });
 
 export default usersReducer;
