@@ -2,7 +2,7 @@ import React from "react";
 import s from './Users.module.css';
 import userPhoto from './../../assets/images/user.png';
 
-const UsersFunc = (props) => {
+const Users = (props) => {
     
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
@@ -44,4 +44,4 @@ const UsersFunc = (props) => {
     )
 }
 
-export default UsersFunc;
+export default Users;
