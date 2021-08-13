@@ -1,14 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setUsersAC, unfollowAC, followAC, setCurrentPageAC, setTotalUsersCountAC, toggleIsFetchingAC } from '../../redux/usersReducer';
+import { setUsers, unfollow, follow, setCurrentPage, setTotalUsersCount, toggleIsFetching } from '../../redux/usersReducer';
 import * as axios from "axios";
 import Users from './Users';
-import loadingGif from '../../assets/images/loading2.gif';
 import Prelouder from '../common/Prelouder';
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        debugger
         this.props.toggleIsFetching(true);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPge}`).then(response => {
             this.props.toggleIsFetching(false);
@@ -31,7 +29,6 @@ class UsersContainer extends React.Component {
 
     render() {
         return <>
-
             {this.props.isFetching === true ?
                 <Prelouder/> :
                 null}
@@ -58,7 +55,7 @@ let mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
+/* let mapDispatchToProps = (dispatch) => {
     return {
         follow: (userID) => { dispatch(followAC(userID)) },
         unfollow: (userID) => { dispatch(unfollowAC(userID)) },
@@ -67,6 +64,13 @@ let mapDispatchToProps = (dispatch) => {
         setTotalUsersCount: (totalCount) => { dispatch(setTotalUsersCountAC(totalCount)) },
         toggleIsFetching: (isFetching) => { dispatch(toggleIsFetchingAC(isFetching)) }
     }
-}
+} */
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
+export default connect(mapStateToProps, {
+    follow,
+    unfollow,
+    setUsers,
+    setCurrentPage,
+    setTotalUsersCount,
+    toggleIsFetching
+}) (UsersContainer)
