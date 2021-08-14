@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { setUsers, unfollow, follow, setCurrentPage, setTotalUsersCount, toggleIsFetching } from '../../redux/usersReducer';
-import * as axios from "axios";
+import * as axios from 'axios';
 import Users from './Users';
 import Prelouder from '../common/Prelouder';
 
@@ -54,17 +54,6 @@ let mapStateToProps = (state) => {
         isFetching: state.usersPage.isFetching
     }
 }
-
-/* let mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (userID) => { dispatch(followAC(userID)) },
-        unfollow: (userID) => { dispatch(unfollowAC(userID)) },
-        setUsers: (users) => { dispatch(setUsersAC(users)) },
-        setCurrentPage: (pageNumber) => { dispatch(setCurrentPageAC(pageNumber)) },
-        setTotalUsersCount: (totalCount) => { dispatch(setTotalUsersCountAC(totalCount)) },
-        toggleIsFetching: (isFetching) => { dispatch(toggleIsFetchingAC(isFetching)) }
-    }
-} */
 
 export default connect(mapStateToProps, {
     follow,
