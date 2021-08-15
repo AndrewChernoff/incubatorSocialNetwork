@@ -20,7 +20,6 @@ const ProfileInfo = (props) => {
             <div className={s.descriptionBlock}>
                 ava + description
                 <div> About me: {props.profile.fullName} </div>
-                <div> About me: {props.profile.aboutMe} </div>
                 <div> My github: {props.profile.contacts.github} </div>
                 <div> My instagram: {props.profile.contacts.instagram} </div>
                 <div> Looking for a job: {props.profile.lookingForAJobDescription} </div>
