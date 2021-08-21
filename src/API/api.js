@@ -1,5 +1,5 @@
 import axios from "axios"
-debugger
+
 export const usersAPI = {
     getUsers: (pageSize, currentPge) => {
         return instance.get(`/users?count=${pageSize}&page=${currentPge}`, {
