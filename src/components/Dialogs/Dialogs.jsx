@@ -9,17 +9,17 @@ const Dialogs = (props) => {
     let dialogElements = state.dialogs.map(dialogs => <DialogItem key={dialogs.id} name={dialogs.name} id={dialogs.id} />);
     let messageElements = state.message.map(message => <Message message={message.message} key={message.id} />);
     let newMessageText = state.newMessageText;
-    
+
     let onNewMessageChange = (e) => {
-       let text = e.target.value;
-       props.updateNewMessageBody(text);
+        let text = e.target.value;
+        props.updateNewMessageBody(text);
     }
-    
+
     let onSendButtonClick = () => {
         props.sendMessage();
     }
-   
-if(!props.isAuth) return <Redirect to='/login'/>
+
+    if (!props.isAuth) return <Redirect to='/login' />
 
     return (
         <div>
@@ -33,9 +33,9 @@ if(!props.isAuth) return <Redirect to='/login'/>
                     <div>
                         <div>
                             <textarea
-                            onChange={onNewMessageChange} 
-                            placeholder='Enter your message' 
-                            value={newMessageText}></textarea>
+                                onChange={onNewMessageChange}
+                                placeholder='Enter your message'
+                                value={newMessageText}></textarea>
                         </div>
 
                         <div>
