@@ -2,20 +2,31 @@ import React from "react"
 
 class ProfileStatus extends React.Component {
     state = {
-        editMode: false
+        editMode: false, 
+        status: this.props.status
     }
 
     activateMode() {
         this.setState({
             editMode: true
         })
+
+        console.log(this)
     }
 
     deactivateMode() {
+        
         this.setState({
             editMode: false
         })
+        this.props.updateStatus(this.state.status)
     }
+
+     onStatusChange(e) {
+        this.setState({
+            status: e.currentTarget.value
+        })
+    } 
 
     render() {
 
@@ -24,13 +35,13 @@ class ProfileStatus extends React.Component {
                 status: {this.state.editMode === false &&
 
                     <div onDoubleClick={this.activateMode.bind(this)}>
-                        {this.props.status}
+                        {this.props.status || '---------'}
                     </div>
                 }
 
                 {this.state.editMode === true &&
                     <div>
-                        <input autoFocus={true} onBlur={this.deactivateMode.bind(this)} value={this.props.status} />
+                        <input onChange={this.onStatusChange.bind(this)} autoFocus={true} onBlur={this.deactivateMode.bind(this)} value={this.state.status} />
                     </div>
                 }
             </div>
