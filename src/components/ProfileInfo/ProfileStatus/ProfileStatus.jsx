@@ -2,7 +2,7 @@ import React from "react"
 
 class ProfileStatus extends React.Component {
     state = {
-        editMode: false, 
+        editMode: false,
         status: this.props.status
     }
 
@@ -15,21 +15,29 @@ class ProfileStatus extends React.Component {
     }
 
     deactivateMode() {
-        
+
         this.setState({
             editMode: false
         })
         this.props.updateStatus(this.state.status)
     }
 
-     onStatusChange(e) {
+    onStatusChange(e) {
         this.setState({
             status: e.currentTarget.value
         })
-    } 
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        debugger
+        if (prevProps.status !== this.props.status) {
+            this.setState({
+                status: this.props.status
+            })
+        }
+    }
 
     render() {
-
         return (
             <div>
                 status: {this.state.editMode === false &&
