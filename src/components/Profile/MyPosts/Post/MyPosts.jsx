@@ -1,31 +1,21 @@
 import React from 'react';
+import { Field, Form } from 'react-final-form';
+import { maxValue, required, composeValidators, minValue } from '../../../../Validate/validator';
+import { Textarea } from '../../../../Validate/FormsControl';
 import s from './MyPosts.module.css';
 import Post from './Post';
 
 const MyPosts = (props) => {
-  let postElements = props.post.map(p => <Post message={p.message} likeCount={p.likeCount} key={p.id}/>);
-  let newPostElement = React.createRef();
+  let postElements = props.post.map(post => <Post message={post.message} likeCount={post.likeCount} key={post.id} />);
 
-  let onAddPost = () => {
-    props.addPost();
-  }
-
-  let onPostChange = () => {
-    let text = newPostElement.current.value;
-    props.updatePostText(text);
+  let onAddPost = (value) => {
+    let postText = value;
+    props.addPost(postText);
   }
 
   return (
     <div className={s.postsBlock}>
-      <div className={s.item}>
-        <div>
-          <h3>My posts</h3>
-          <textarea ref={newPostElement} onChange={onPostChange} value={props.newPostText}></textarea>
-          <div>
-            <button onClick={onAddPost}>Add post</button>
-          </div>
-        </div>
-      </div>
+      <AddPostForm onAddPost={onAddPost} />
       <div className={s.item}>
         New post
       </div>
@@ -33,6 +23,35 @@ const MyPosts = (props) => {
         {postElements}
       </div>
     </div>
+  )
+}
+
+
+const AddPostForm = (props) => {
+  const onSubmit = (e) => {
+    debugger
+    props.onAddPost(e.text);
+    e.text = ''
+  }
+
+  const maxValue20 = maxValue(20)
+
+debugger
+  return (
+    <div>
+       <Form
+        onSubmit={onSubmit}
+
+        render={({ handleSubmit }) => (
+          <form onSubmit={handleSubmit}>  
+            <Field name={'text'} component={Textarea} placeholder={'Create post'}  validate={composeValidators(required, maxValue20, minValue(1))}/>
+            <button> Add post</button>
+          </form>
+        )} /> 
+
+
+    </div>
+
   )
 }
 
