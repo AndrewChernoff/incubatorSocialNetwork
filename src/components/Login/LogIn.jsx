@@ -1,54 +1,67 @@
+import React from 'react'
 import { Form, Field } from 'react-final-form'
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router'
+import { loginUser } from '../../redux/authReducer'
 import { Input } from '../../Validate/FormsControl'
 import { required } from '../../Validate/validator'
 
 
-const Login = () => {
+const Login = (props) => {
     return <div>
         <h1>Login</h1>
-        <LoginForm />
+        <LoginFormContainer />
     </div>
 }
 
 
- const LoginForm = () => {
+const LoginForm = (props) => {
+    
     const onSubmit = (e) => {
-       console.log("hey")
+        props.loginUser(e.email, e.password, e.rememberMe);  
+        
     }
 
-    const validate = (e) => {
-        console.log("hey")
-    }
-    
+    if(props.isAuth) {
+        return <Redirect to='/profile'/>
+    }      
+
     return (
         <div>
             <Form
                 onSubmit={onSubmit}
-                validate={validate}
                 render={({ handleSubmit }) => (
                     <form onSubmit={handleSubmit}>
 
                         <div>
-                            <label>Login</label>
-                            <Field placeholder={"Login"} name={"login"} component={Input}  validate={required}/>
+                            <label>Email</label>
+                            <Field placeholder={"Email"} name={"email"} component={Input} validate={required} />
                         </div>
 
                         <div>
                             <label>Password</label>
-                            <Field placeholder={"Password"} name={"password"} component={Input}  validate={required}/>
+                            <Field placeholder={"Password"} name={"password"} type={'password'} component={Input} validate={required} />
                         </div>
 
                         <div>
                             <label>remember me</label>
-                            <Field component={Input} name={"rememberMe"} type={"checkbox"}  validate={required}/>
+                            <Field component={Input} name={"rememberMe"} type={"checkbox"} />
                         </div>
-                        <button type="submit">Login</button>
+                        <button>Login</button>
+
                     </form>
                 )
                 } />
         </div>
-
     )
-} 
+}
 
-export default Login 
+let mapStateToProps = (state) => {
+    return {
+        isAuth: state.authPage.isAuth
+    }
+}
+
+const LoginFormContainer = connect(mapStateToProps, { loginUser })(LoginForm);
+
+export default Login

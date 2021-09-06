@@ -3,7 +3,6 @@ import { addPostActionCreator } from '../../../../redux/profileReducer';
 import MyPosts from './MyPosts';
 
 let mapStateToProps = (state) => {
-    debugger
     return { 
         post: state.profileComponent.posts,
         newPostText: state.profileComponent.newPostText

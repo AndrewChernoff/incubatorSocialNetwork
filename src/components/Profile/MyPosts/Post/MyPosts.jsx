@@ -26,17 +26,14 @@ const MyPosts = (props) => {
   )
 }
 
-
 const AddPostForm = (props) => {
   const onSubmit = (e) => {
-    debugger
     props.onAddPost(e.text);
     e.text = ''
   }
 
   const maxValue20 = maxValue(20)
 
-debugger
   return (
     <div>
        <Form
