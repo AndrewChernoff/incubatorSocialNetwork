@@ -14,8 +14,7 @@ let authReducer = (state = initialState, action) => {
         case SET_USER_DATA:
             return {
                 ...state,
-                ...action.data,
-                isAuth: true
+                ...action.data
             }
     }
     return state;
@@ -35,10 +34,11 @@ export const getAuthUserData = () => (dispatch) => {
 }
 
 export const loginUser = (email, password, rememberMe) => (dispatch) => {
+    debugger
         authAPI.login(email, password, rememberMe)
             .then(data => {
-                if (data.resultCode === 0) {
-                    console.log(data.resultCode)
+                debugger
+                if (data.data.resultCode === 0) {
                     dispatch(getAuthUserData());
                 }
             }
@@ -48,8 +48,9 @@ export const loginUser = (email, password, rememberMe) => (dispatch) => {
     
 export const logoutUser = () => (dispatch) => {
     authAPI.logout().then(data => {
-        if(data.resultCode === 0) {
-        dispatch(getAuthUserData(null, null, null, false))
+        debugger
+        if(data.data.resultCode === 0) {
+        dispatch(setUserAuthData(null, null, null, false))
         }
     })
 } 
