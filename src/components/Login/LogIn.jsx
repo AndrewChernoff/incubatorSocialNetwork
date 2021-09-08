@@ -5,7 +5,7 @@ import { Redirect } from 'react-router'
 import { loginUser } from '../../redux/authReducer'
 import { Input } from '../../Validate/FormsControl'
 import { required } from '../../Validate/validator'
-
+import s from '../Login/Login.module.css'
 
 const Login = (props) => {
     return <div>
@@ -36,16 +36,18 @@ const LoginForm = (props) => {
                         <div>
                             <label>Email</label>
                             <Field placeholder={"Email"} name={"email"} component={Input} validate={required} />
-                        </div>
+                            
+                        </div> 
 
                         <div>
                             <label>Password</label>
                             <Field placeholder={"Password"} name={"password"} type={'password'} component={Input} validate={required} />
                         </div>
-
+                              
                         <div>
                             <label>remember me</label>
                             <Field component={Input} name={"rememberMe"} type={"checkbox"} />
+                            {props.wrongAuth? <div className={s.errorLogin}> Incorect email or password </div> : undefined}
                         </div>
                         <button>Login</button>
 
@@ -58,7 +60,8 @@ const LoginForm = (props) => {
 
 let mapStateToProps = (state) => {
     return {
-        isAuth: state.authPage.isAuth
+        isAuth: state.authPage.isAuth,
+        wrongAuth: state.authPage.wrongAuth
     }
 }
 

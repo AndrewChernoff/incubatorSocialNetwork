@@ -13,7 +13,7 @@ const Dialogs = (props) => {
     let messageElements = state.message.map(message => <Message message={message.message} key={message.id} />);
 
     let onSendButtonClick = (e) => {
-        debugger
+        
         let text = e.text;
         props.sendMessage(text);
         e.text = ''
@@ -21,7 +21,7 @@ const Dialogs = (props) => {
 
     if (!props.isAuth) return <Redirect to='/login' />
 
-    debugger
+    
     return (
         <div>
             <div className={s.dialogs}>

@@ -6,6 +6,5 @@ export const maxValue = (max) => (value) => value && value.length > max ? `Shoul
 export const minValue = (min) => (value) =>
     value && min >= value.length ? `Should be greater than ${min}` : undefined;
 
-
 export const composeValidators = (...validators) => (value) =>
     validators.reduce((error, validator) => error || validator(value), undefined);
