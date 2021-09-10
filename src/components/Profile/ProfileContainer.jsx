@@ -15,6 +15,10 @@ debugger
             userId = this.props.id;
         }
 
+        if (!userId) {
+            userId = this.props.history.push('/login');
+        }
+
         this.props.getUserProfile(userId);
         this.props.getUserStatus(userId);
     }

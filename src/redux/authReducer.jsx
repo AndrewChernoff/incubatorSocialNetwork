@@ -32,7 +32,7 @@ export const setUserAuthData = (id, email, login, isAuth) => ({ type: SET_USER_D
 export const wrongAuth = (wrongAuth) => ({ type: WRONG_AUTH, wrongAuth });
 
 export const getAuthUserData = () => (dispatch) => {
-    authAPI.me()
+  return  authAPI.me()
         .then(data => {
             if (data.resultCode === 0) {
                 let { id, email, login } = data.data;

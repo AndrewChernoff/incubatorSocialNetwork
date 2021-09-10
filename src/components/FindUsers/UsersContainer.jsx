@@ -6,9 +6,7 @@ import Prelouder from '../common/Prelouder';
 import { withAuthRedirect } from '../../HOC/withAuthContainer';
 import { compose } from 'redux';
 
-
 class UsersContainer extends React.Component {
-    
     componentDidMount() {
         this.props.getUserThunk(this.props.pageSize, this.props.currentPage);
     }
