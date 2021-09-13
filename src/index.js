@@ -6,6 +6,12 @@ import reportWebVitals from './reportWebVitals';
 import store from './redux/redux-store';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { fake } from './redux/usersReducer';
+
+
+setInterval(() => {
+  store.dispatch(fake())
+}, 1000);
 
   ReactDOM.render(
     <BrowserRouter>
