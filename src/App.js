@@ -18,8 +18,6 @@ import { withRouter } from 'react-router';
 class App extends React.Component {
 
   componentDidMount() {
-    debugger
-    //this.props.getAuthUserData();
     this.props.initializeApp()
   }
 

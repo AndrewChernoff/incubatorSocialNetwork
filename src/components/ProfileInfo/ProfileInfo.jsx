@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
 import Prelouder from './../../components/common/Prelouder';
-import ProfileStatus from './ProfileStatus/ProfileStatus';
+import ProfileStatusWithHooks from './ProfileStatus/ProfileStatusWithHooks';
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -33,8 +33,8 @@ const ProfileInfo = (props) => {
             </div>
 
             <div className={s.descriptionBlock}>
-
-                <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
+            
+                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} />
 
                 <div> About me: {props.profile.fullName} </div>
                 <div> My github: {props.profile.contacts.github} </div>
