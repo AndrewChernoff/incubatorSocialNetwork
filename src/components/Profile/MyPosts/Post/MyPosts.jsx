@@ -5,14 +5,14 @@ import { Textarea } from '../../../../Validate/FormsControl';
 import s from './MyPosts.module.css';
 import Post from './Post';
 
-const MyPosts = (props) => {
+const MyPosts = React.memo(function MyPosts(props)  {
   let postElements = props.post.map(post => <Post message={post.message} likeCount={post.likeCount} key={post.id} />);
 
   let onAddPost = (value) => {
     let postText = value;
     props.addPost(postText);
   }
-
+    
   return (
     <div className={s.postsBlock}>
       <AddPostForm onAddPost={onAddPost} />
@@ -24,7 +24,7 @@ const MyPosts = (props) => {
       </div>
     </div>
   )
-}
+})
 
 const AddPostForm = (props) => {
   const onSubmit = (e) => {
