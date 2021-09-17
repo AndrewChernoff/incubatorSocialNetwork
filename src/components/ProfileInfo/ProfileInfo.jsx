@@ -3,11 +3,11 @@ import s from './ProfileInfo.module.css';
 import Prelouder from './../../components/common/Prelouder';
 import ProfileStatusWithHooks from './ProfileStatus/ProfileStatusWithHooks';
 
-const ProfileInfo = (props) => {
-    if (!props.profile) {
+const ProfileInfo = ({ profile, status, updateStatus }) => {
+    if (!profile) {
         return <Prelouder />
     }
-    
+
     return (
         <div>
             <div>
@@ -29,17 +29,17 @@ const ProfileInfo = (props) => {
             </div>
 
             <div>
-                <img src={props.profile.photos.large} style={{ width: 200 }} alt='user ava' />
+                <img src={profile.photos.large} style={{ width: 200 }} alt='user ava' />
             </div>
 
             <div className={s.descriptionBlock}>
-            
-                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} />
 
-                <div> About me: {props.profile.fullName} </div>
-                <div> My github: {props.profile.contacts.github} </div>
-                <div> My instagram: {props.profile.contacts.instagram} </div>
-                <div> Looking for a job: {props.profile.lookingForAJobDescription} </div>
+                <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
+
+                <div> About me: {profile.fullName} </div>
+                <div> My github: {profile.contacts.github} </div>
+                <div> My instagram: {profile.contacts.instagram} </div>
+                <div> Looking for a job: {profile.lookingForAJobDescription} </div>
             </div>
         </div>
     )

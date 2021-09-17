@@ -3,7 +3,7 @@ import { Form, Field } from 'react-final-form'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 import { loginUser } from '../../redux/authReducer'
-import { Input } from '../../Validate/FormsControl'
+import { Input, createForm } from '../../Validate/FormsControl'
 import { required } from '../../Validate/validator'
 import s from '../Login/Login.module.css'
 
@@ -16,15 +16,13 @@ const Login = (props) => {
 
 
 const LoginForm = (props) => {
-    
     const onSubmit = (e) => {
-        props.loginUser(e.email, e.password, e.rememberMe);  
-        
+        props.loginUser(e.email, e.password, e.rememberMe);
     }
 
-    if(props.isAuth) {
-        return <Redirect to='/profile'/>
-    }      
+    if (props.isAuth) {
+        return <Redirect to='/profile' />
+    }
 
     return (
         <div>
@@ -33,21 +31,25 @@ const LoginForm = (props) => {
                 render={({ handleSubmit }) => (
                     <form onSubmit={handleSubmit}>
 
-                        <div>
+                        {/* <div>
                             <label>Email</label>
                             <Field placeholder={"Email"} name={"email"} component={Input} validate={required} />
-                            
-                        </div> 
-
-                        <div>
+                        </div>  */}
+                        {/* <div>
                             <label>Password</label>
                             <Field placeholder={"Password"} name={"password"} type={'password'} component={Input} validate={required} />
-                        </div>
-                              
+                        </div>*/}
+
+                        {createForm('Email', "Email", "email", Input, required, null)}
+                        {createForm('Password', "Password", "password", Input, required, 'password')}
+                        {createForm('Remember me', null, "rememberMe", Input, null, "checkbox")}
+
+
+
+
+
                         <div>
-                            <label>remember me</label>
-                            <Field component={Input} name={"rememberMe"} type={"checkbox"} />
-                            {props.wrongAuth? <div className={s.errorLogin}> Incorect email or password </div> : undefined}
+                            {props.wrongAuth ? <div className={s.errorLogin}> Incorect email or password </div> : undefined}
                         </div>
                         <button>Login</button>
 
