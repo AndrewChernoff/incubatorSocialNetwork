@@ -5,17 +5,10 @@ import User from "./User";
 
 const Users = ({ onPageChange, currentPage, totalUsersCount, pageSize, users, ...props }) => {
 
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-
-    let pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i);
-    }
-
     return (
         <div className={s.findUsersPage}>
 
-            <Paginator onPageChange={onPageChange} currentPage={currentPage} totalUsersCount={totalUsersCount} pageSize={pageSize} />
+            <Paginator onPageChange={onPageChange} currentPage={currentPage} totalUsersCount={totalUsersCount} portionSize={pageSize} />
             <div>
                 {users.map(u => <User user={u} key={u.id}
                     followingInProgress={props.followingInProgress}

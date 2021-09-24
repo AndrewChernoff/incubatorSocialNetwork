@@ -13,7 +13,7 @@ const Dialogs = (props) => {
     let messageElements = state.message.map(message => <Message message={message.message} key={message.id} />);
 
     let onSendButtonClick = (e) => {
-        
+
         let text = e.text;
         props.sendMessage(text);
         e.text = ''
@@ -21,7 +21,7 @@ const Dialogs = (props) => {
 
     //if (!props.isAuth) return <Redirect to='/login' />
 
-    
+
     return (
         <div>
             <div className={s.dialogs}>
@@ -48,11 +48,11 @@ const DialogsForm = (props) => {
             onSubmit={props.onSendButtonClick}
 
             render={({ handleSubmit }) => (
-                <form onSubmit={handleSubmit}> 
+                <form onSubmit={handleSubmit}>
                     <div>
                         <Field name={'text'} component={Textarea} placeholder={"Enter your message"} value={'hello'}
-                         validate={composeValidators(required, maxValue(50), minValue(1))}/>
-                        <button>Submit</button>
+                            validate={composeValidators(required, maxValue(50), minValue(1))} />
+                        <button>Send</button>
                     </div>
                 </form>)} />
     )

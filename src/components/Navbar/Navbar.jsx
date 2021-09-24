@@ -8,36 +8,35 @@ const Navbar = (props) => {
 
     return (
         <StoreContext.Consumer>
-          {(store) => (  
-            <nav className={s.nav}>
-                <div className={s.item}>
-                    <NavLink to='/profile' activeClassName={s.active}>Profile</NavLink>
-                </div>
+            {(store) => (
+                <nav className={s.nav}>
+                    <div className={s.item}>
+                        <NavLink to='/profile' activeClassName={s.active}>Profile</NavLink>
+                    </div>
 
-                <div className={s.item}>
-                    <NavLink to='/dialogs' activeClassName={s.active}>Messeges</NavLink>
-                </div>
+                    <div className={s.item}>
+                        <NavLink to='/dialogs' activeClassName={s.active}>Messeges</NavLink>
+                    </div>
 
-                <div className={s.item}>
-                    <NavLink to='/news' activeClassName={s.active}>News</NavLink>
-                </div>
+                    <div className={`${s.item} ${s.findUsers}`}>
+                        <NavLink to='/users' activeClassName={s.active}>Find users</NavLink>
+                    </div>
 
-                <div className={s.item}>
-                    <NavLink to='/music' activeClassName={s.active}>Music</NavLink>
-                </div>
+                    <div className={s.item}>
+                        <NavLink to='/news' activeClassName={s.active}>News</NavLink>
+                    </div>
 
-                <div className={s.item}>
-                    <NavLink to='/settings' activeClassName={s.active}>Settings</NavLink>
-                </div>
+                    <div className={s.item}>
+                        <NavLink to='/music' activeClassName={s.active}>Music</NavLink>
+                    </div>
 
-                <div className={`${s.item} ${s.findUsers}`}>
-                    <NavLink to='/users' activeClassName={s.active}>Find users</NavLink>
-                </div>
+                    <div className={s.item}>
+                        <NavLink to='/settings' activeClassName={s.active}>Settings</NavLink>
+                    </div>
 
-                <FriendList />
-            </nav>
-          )    
-        }
+                </nav>
+            )
+            }
         </StoreContext.Consumer>
     )
 }
