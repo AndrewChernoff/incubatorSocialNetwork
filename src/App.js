@@ -1,6 +1,6 @@
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { HashRouter, Route } from 'react-router-dom';
 import HeaderContainer from './components/Header/HeaderContainer';
 import LoginPage from './components/Login/LogIn';
 import React, { Suspense } from 'react';
@@ -62,11 +62,11 @@ const AppContainer = compose(
   (App)
 
 const SamuraiApp = () => {
-  return <BrowserRouter>
+  return <HashRouter>
     <Provider store={store}>
       <AppContainer />
     </Provider>
-  </BrowserRouter>
+  </HashRouter>
 }
 
 export default SamuraiApp;
