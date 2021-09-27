@@ -5,6 +5,7 @@
     "n c c c  c c c "
     "n c c c c c c ";
   width: 100%;
+  gap: 5px;
 }
 
 .app-wrapper-content {
