@@ -34,8 +34,6 @@ export const usersAPI = {
         console.log('obsolete method')
         return profileAPI.getProfile(userId);
     }
-
-
 }
 
 export const profileAPI = {
@@ -49,6 +47,19 @@ export const profileAPI = {
 
     updateStatus(status) {
         return instance.put(`profile/status`, { status: status })
+    },
+
+    savePhoto(photo) {
+        const formData = new FormData();
+
+        formData.set('image', photo);
+
+        return instance.put(`profile/photo`, formData, {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        })
+
     }
 }
 
@@ -62,10 +73,10 @@ export const authAPI = {
         })
     },
 
-    login(email, password, rememberMe=false) {
-        return instance.post('auth/login', {email, password, rememberMe})
+    login(email, password, rememberMe = false) {
+        return instance.post('auth/login', { email, password, rememberMe })
     },
-    
+
     logout() {
         return instance.delete('auth/login')
     }

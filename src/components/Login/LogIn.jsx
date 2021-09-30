@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Field } from 'react-final-form'
+import { Form } from 'react-final-form'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 import { loginUser } from '../../redux/authReducer'
@@ -31,22 +31,9 @@ const LoginForm = (props) => {
                 render={({ handleSubmit }) => (
                     <form onSubmit={handleSubmit}>
 
-                        {/* <div>
-                            <label>Email</label>
-                            <Field placeholder={"Email"} name={"email"} component={Input} validate={required} />
-                        </div>  */}
-                        {/* <div>
-                            <label>Password</label>
-                            <Field placeholder={"Password"} name={"password"} type={'password'} component={Input} validate={required} />
-                        </div>*/}
-
                         {createForm('Email', "Email", "email", Input, required, null)}
                         {createForm('Password', "Password", "password", Input, required, 'password')}
                         {createForm('Remember me', null, "rememberMe", Input, null, "checkbox")}
-
-
-
-
 
                         <div>
                             {props.wrongAuth ? <div className={s.errorLogin}> Incorect email or password </div> : undefined}
