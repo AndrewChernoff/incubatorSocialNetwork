@@ -51,3 +51,11 @@ export const createForm = (label, placeholder, name, component, validate, type) 
         <Field placeholder={placeholder} name={name} component={component} validate={validate} type={type} />
     </div>
 }
+
+////Form for ProfileForm Componnet
+export const profileDataForm = (label, placeholder, name, component, validate, type, initialValue) => {
+    return <div>
+        <label>{label}</label>
+        <Field placeholder={placeholder} name={name} component={component} validate={validate} type={type} initialValue={initialValue} />
+    </div>
+}

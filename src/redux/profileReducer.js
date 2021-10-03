@@ -5,6 +5,8 @@ const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_USER_STATUS = 'SET_USER_STATUS';
 const DELETE_POST = 'DELETE_POST';
 const UPLOAD_PHOTO = 'UPLOAD_PHOTO';
+const SAVE_PROFILE = 'SAVE_PROFILE';
+const INVALID_URL = 'INVALID_URL';
 
 let initialState = {
   posts: [
@@ -12,10 +14,12 @@ let initialState = {
     { id: 2, message: 'It\'s my first post', likeCount: 20 },
   ],
   userProfile: null,
-  status: ''
+  status: '',
+  invalidUrl: null ///
 }
 
 const profileReducer = (state = initialState, action) => {
+  debugger
   switch (action.type) {
     case Add_Post: {
       let newPost = {
@@ -58,6 +62,20 @@ const profileReducer = (state = initialState, action) => {
       }
     }
 
+    case SAVE_PROFILE: {
+      return {
+        ...state,
+        userProfile: action.profileData
+      }
+    }
+
+    case INVALID_URL: {
+      return {
+        ...state,
+        invalidUrl: action.invalidUrl
+      }
+    }
+
     default: return state;
   }
 }
@@ -66,8 +84,10 @@ const profileReducer = (state = initialState, action) => {
 export const addPostActionCreator = (postText) => ({ type: Add_Post, postText });
 export const setUserProfile = (userProfile) => ({ type: SET_USER_PROFILE, userProfile });
 export const setUserStatus = (status) => ({ type: SET_USER_STATUS, status });
-export const deletePost = (postId) => ({ type: DELETE_POST, postId })
-export const uploadPhotoSuccess = (photo) => ({ type: UPLOAD_PHOTO, photo })
+export const deletePost = (postId) => ({ type: DELETE_POST, postId });
+export const uploadPhotoSuccess = (photo) => ({ type: UPLOAD_PHOTO, photo });
+export const saveProfileSucces = (profileData) => ({ type: SAVE_PROFILE, profileData });
+export const invalidUrl = (invalidUrl) => ({ type: INVALID_URL, invalidUrl });
 
 export const getUserProfile = (userId) => async (dispatch) => {
   let response = await usersAPI.getProfile(userId)
@@ -89,7 +109,20 @@ export const updateStatus = (status) => async (dispatch) => {
 export const uploadPhoto = (photo) => async (dispatch) => {
   let response = await profileAPI.savePhoto(photo)
   if (response.data.resultCode === 0) {
+    debugger
     dispatch(uploadPhotoSuccess(response.data.data.photos));
+  }
+}
+
+export const saveProfile = (profileData) => async (dispatch, getState) => {
+  let response = await profileAPI.saveProfileData(profileData)
+  debugger
+  const userId = getState().authPage.id;
+  //let invalidUrl = getState().profileComponent.invalidUrl;
+  if (response.data.resultCode === 0) {
+    dispatch(getUserProfile(userId));
+  } else if (response.data.resultCode === 1) {
+    dispatch(invalidUrl(response.data.messages[0]))
   }
 }
 

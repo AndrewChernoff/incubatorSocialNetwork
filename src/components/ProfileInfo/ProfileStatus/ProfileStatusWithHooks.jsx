@@ -1,44 +1,44 @@
 import React, { useEffect, useState } from "react"
 
-const  ProfileStatusWithHooks = (props) => {
-    
-const [editMode, setEditMode] = useState(false);
-const [status, setStatus] = useState(props.status);
+const ProfileStatusWithHooks = (props) => {
 
-useEffect(() => {
-    setStatus(props.status);
-}, [props.status]);
+    const [editMode, setEditMode] = useState(false);
+    const [status, setStatus] = useState(props.status);
 
-let activateMode = () => {
-    setEditMode(true);
-}
+    useEffect(() => {
+        setStatus(props.status);
+    }, [props.status]);
 
-let deactivateMode = () => {
-    setEditMode(false);
-    props.updateStatus(status);
-}
+    let activateMode = () => {
+        setEditMode(true);
+    }
 
-const onStatusChange = (e) => {
-    setStatus(e.currentTarget.value)
-}
+    let deactivateMode = () => {
+        setEditMode(false);
+        props.updateStatus(status);
+    }
 
-        return (
-            <div>
-                status: {editMode === false &&
+    const onStatusChange = (e) => {
+        setStatus(e.currentTarget.value)
+    }
 
-                    <div onDoubleClick={activateMode}>
-                        {props.status || '---------'}
-                    </div>
-                }
- 
-                {editMode === true &&
-                    <div>
-                        <input autoFocus={true} onChange={onStatusChange} onBlur={deactivateMode} value={status}/>
-                    </div>
-                }
-            </div>
-        )
-    
+    return (
+        <div>
+            Status: {editMode === false &&
+
+                <span onDoubleClick={activateMode}>
+                    {props.status || '---------'}
+                </span>
+            }
+
+            {editMode === true &&
+                <span>
+                    <input autoFocus={true} onChange={onStatusChange} onBlur={deactivateMode} value={status} />
+                </span>
+            }
+        </div>
+    )
+
 }
 
 export default ProfileStatusWithHooks

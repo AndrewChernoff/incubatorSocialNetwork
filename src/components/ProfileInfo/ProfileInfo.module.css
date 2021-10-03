@@ -1,3 +1,29 @@
 .descriptionBlock {
   padding: 10px;
 }
+
+.formInfo {
+  font-weight: bold;
+}
+
+.photo {
+  max-width: 200px;
+  padding: 10px;
+}
+
+.profileContacts {
+  padding: 10px 0 0 0;
+}
+
+.invalidUrl {
+  color: red;
+  padding: 0 0 0 10px;
+}
+
+.profileContactsTitle {
+  font-weight: bold;
+}
+.personal {
+  font-weight: bold;
+  padding: 10px 0 0 0;
+}

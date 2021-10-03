@@ -51,17 +51,19 @@ export const profileAPI = {
 
     savePhoto(photo) {
         const formData = new FormData();
-
         formData.set('image', photo);
-
         return instance.put(`profile/photo`, formData, {
             headers: {
                 'content-type': 'multipart/form-data'
             }
         })
+    },
 
+    saveProfileData(profileData) {
+        return instance.put(`profile`, profileData)
     }
 }
+
 
 
 export const authAPI = {
