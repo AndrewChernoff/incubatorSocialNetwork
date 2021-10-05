@@ -22,26 +22,14 @@ const ProfileInfo = ({ profile, status, updateStatus, isOwner, saveProfile, inva
     }
 
     let deativateEditMode = (e) => {
-        debugger
-        let profileData = {
-            fullName: e.fullName,
-            aboutMe: e.aboutMe,
-            lookingForAJobDescription: e.lookingForAJobDescription,
-            lookingForAJob: e.lookingForAJob,
-            contacts: {
-                facebook: e.contacts.facebook,
-                github: e.contacts.github,
-                mainLink: e.contacts.mainLink,
-                twitter: e.contacts.twitter,
-                vk: e.contacts.vk,
-                website: e.contacts.website,
-                youtube: e.contacts.youtube
-            }
-        }
-        saveProfile(profileData);
+        saveProfile(e);
         setEditMode(false);
     }
-    debugger
+
+    let cancelSending = () => {
+        setEditMode(false);
+    }
+
     return (
         <div>
             <div>
@@ -57,7 +45,7 @@ const ProfileInfo = ({ profile, status, updateStatus, isOwner, saveProfile, inva
 
                 {!editMode ?
                     <ProfileData profile={profile} isOwner={isOwner} editModeTrue={activateEditMode} />
-                    : <ProfileForm profile={profile} editModeFalse={deativateEditMode} />}
+                    : <ProfileForm profile={profile} editModeFalse={deativateEditMode} cancelSending={cancelSending} />}
             </div>
             <div>{invalidUrl ? <div className={s.invalidUrl}> {invalidUrl} </div> : undefined}</div>
         </div>
@@ -81,7 +69,7 @@ const ProfileData = ({ profile, isOwner, editModeTrue }) => {
 const ProfileContacts = ({ profile }) => {
     return (
         <div className={s.profileContacts}>
-            <div className={s.profileContactsTitle}> Profile contacts: </div>
+            <div className={s.profileContactsTitle}> Contacts: </div>
             {Object.keys(profile.contacts).map(key => {
                 return <div key={key.id} className={s.contact}> {key}: {profile.contacts[key]} </div>
             })}

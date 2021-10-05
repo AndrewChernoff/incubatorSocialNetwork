@@ -3,6 +3,11 @@
 }
 
 .formInfo {
+  padding: 20px 0 0 0;
+}
+
+.formInfo .infoDescription,
+.contactsDescription {
   font-weight: bold;
 }
 
@@ -26,4 +31,8 @@
 .personal {
   font-weight: bold;
   padding: 10px 0 0 0;
+}
+
+.buttons {
+  padding: 0 0 0 46px;
 }

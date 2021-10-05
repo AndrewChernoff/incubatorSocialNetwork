@@ -120,6 +120,7 @@ export const saveProfile = (profileData) => async (dispatch, getState) => {
   const userId = getState().authPage.id;
   //let invalidUrl = getState().profileComponent.invalidUrl;
   if (response.data.resultCode === 0) {
+    dispatch(invalidUrl(''))
     dispatch(getUserProfile(userId));
   } else if (response.data.resultCode === 1) {
     dispatch(invalidUrl(response.data.messages[0]))
