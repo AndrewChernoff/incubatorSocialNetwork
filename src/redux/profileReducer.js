@@ -15,11 +15,10 @@ let initialState = {
   ],
   userProfile: null,
   status: '',
-  invalidUrl: null ///
+  invalidUrl: null
 }
 
 const profileReducer = (state = initialState, action) => {
-  debugger
   switch (action.type) {
     case Add_Post: {
       let newPost = {
@@ -109,16 +108,13 @@ export const updateStatus = (status) => async (dispatch) => {
 export const uploadPhoto = (photo) => async (dispatch) => {
   let response = await profileAPI.savePhoto(photo)
   if (response.data.resultCode === 0) {
-    debugger
     dispatch(uploadPhotoSuccess(response.data.data.photos));
   }
 }
 
 export const saveProfile = (profileData) => async (dispatch, getState) => {
   let response = await profileAPI.saveProfileData(profileData)
-  debugger
   const userId = getState().authPage.id;
-  //let invalidUrl = getState().profileComponent.invalidUrl;
   if (response.data.resultCode === 0) {
     dispatch(invalidUrl(''))
     dispatch(getUserProfile(userId));

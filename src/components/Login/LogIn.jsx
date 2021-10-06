@@ -17,7 +17,8 @@ const Login = (props) => {
 
 const LoginForm = (props) => {
     const onSubmit = (e) => {
-        props.loginUser(e.email, e.password, e.rememberMe);
+        debugger
+        props.loginUser(e.email, e.password, e.rememberMe, e.captcha);
     }
 
     if (props.isAuth) {
@@ -30,16 +31,25 @@ const LoginForm = (props) => {
                 onSubmit={onSubmit}
                 render={({ handleSubmit }) => (
                     <form onSubmit={handleSubmit}>
-
-                        {createForm('Email', "Email", "email", Input, required, null)}
-                        {createForm('Password', "Password", "password", Input, required, 'password')}
-                        {createForm('Remember me', null, "rememberMe", Input, null, "checkbox")}
+                        <div>
+                            {createForm('Email', "Email", "email", Input, required, null)}
+                            {createForm('Password', "Password", "password", Input, required, 'password')}
+                            {createForm('Remember me', null, "rememberMe", Input, null, "checkbox")}
+                        </div>
 
                         <div>
                             {props.wrongAuth ? <div className={s.errorLogin}> Incorect email or password </div> : undefined}
                         </div>
-                        <button>Login</button>
 
+
+                        {props.captcha && <div style={{ padding: 20 }}>
+                            <img src={props.captcha} style={{ maxWidth: 250 }} alt='captcha' />
+                            {createForm(null, 'Symbols for login', "captcha", Input, null, "text")}
+                        </div>}
+
+                        <div >
+                            <button>Login</button>
+                        </div>
                     </form>
                 )
                 } />
@@ -50,7 +60,8 @@ const LoginForm = (props) => {
 let mapStateToProps = (state) => {
     return {
         isAuth: state.authPage.isAuth,
-        wrongAuth: state.authPage.wrongAuth
+        wrongAuth: state.authPage.wrongAuth,
+        captcha: state.authPage.captcha
     }
 }
 

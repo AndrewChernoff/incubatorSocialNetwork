@@ -15,8 +15,7 @@ let initialState = {
     totalUsersCount: 19,
     currentPage: 1,
     isFetching: true,
-    followingInProgress: [],
-    fake: 10
+    followingInProgress: []
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -24,7 +23,7 @@ const usersReducer = (state = initialState, action) => {
         case FOLLOW:
             return {
                 ...state,
-                users: updateObjectInArray(state.users, action.userID, 'id', {followed: true})
+                users: updateObjectInArray(state.users, action.userID, 'id', { followed: true })
                 /* state.users.map(u => {
                     if (u.id === action.userID) {
                         return { ...u, followed: true }
@@ -36,7 +35,7 @@ const usersReducer = (state = initialState, action) => {
         case UNFOLLOW:
             return {
                 ...state,
-                users: updateObjectInArray(state.users, action.userID, 'id', {followed: false})
+                users: updateObjectInArray(state.users, action.userID, 'id', { followed: false })
                 /* state.users.map(u => {
                     if (u.id === action.userID) {
                         return { ...u, followed: false }
@@ -89,48 +88,48 @@ export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isF
 export const toggleFollowingProgress = (isFetching, userID) => ({ type: FOLLOWING_IN_PROGRESS, isFetching, userID });
 
 export const getUserThunk = (pageSize, currentPge) => {
-    return async(dispatch) => {
+    return async (dispatch) => {
         dispatch(toggleIsFetching(true));
         let data = await usersAPI.getUsers(pageSize, currentPge)
-                dispatch(setCurrentPage(currentPge))
-                dispatch(toggleIsFetching(false));
-                dispatch(setUsers(data.items));
-                dispatch(setTotalUsersCount(data.totalCount));
+        dispatch(setCurrentPage(currentPge))
+        dispatch(toggleIsFetching(false));
+        dispatch(setUsers(data.items));
+        dispatch(setTotalUsersCount(data.totalCount));
     }
 }
 
 export const unfollow = (userID) => {
     return async (dispatch) => {
         followUnfollowFlow(dispatch, usersAPI.unfollowUser.bind(usersAPI), unfollowSucces, userID)
-       /*  dispatch(toggleFollowingProgress(true, userID));
-       let data = await usersAPI.unfollowUser(userID)
-            if (data.resultCode === 0) {
-                dispatch(unfollowSucces(userID));
-            }
-            dispatch(toggleFollowingProgress(false, userID)) */
+        /*  dispatch(toggleFollowingProgress(true, userID));
+        let data = await usersAPI.unfollowUser(userID)
+             if (data.resultCode === 0) {
+                 dispatch(unfollowSucces(userID));
+             }
+             dispatch(toggleFollowingProgress(false, userID)) */
     }
 }
 
 export const follow = (userID) => {
     return async (dispatch) => {
         followUnfollowFlow(dispatch, usersAPI.followUser.bind(usersAPI), followSucces, userID)
-       /*  dispatch(toggleFollowingProgress(true, userID));
-    let data = await usersAPI.followUser(userID)
-            if (data.resultCode === 0) {
-                dispatch(followSucces(userID))
-            }
-            dispatch(toggleFollowingProgress(false, userID)); */
+        /*  dispatch(toggleFollowingProgress(true, userID));
+     let data = await usersAPI.followUser(userID)
+             if (data.resultCode === 0) {
+                 dispatch(followSucces(userID))
+             }
+             dispatch(toggleFollowingProgress(false, userID)); */
     }
 }
 
-const followUnfollowFlow = async(dispatch, APImethod, actionCreator, userID) => {
-        dispatch(toggleFollowingProgress(true, userID));
+const followUnfollowFlow = async (dispatch, APImethod, actionCreator, userID) => {
+    dispatch(toggleFollowingProgress(true, userID));
     let data = await APImethod(userID)
-            if (data.resultCode === 0) {
-                dispatch(actionCreator(userID))
-            }
-            dispatch(toggleFollowingProgress(false, userID));
-    
+    if (data.resultCode === 0) {
+        dispatch(actionCreator(userID))
+    }
+    dispatch(toggleFollowingProgress(false, userID));
+
 }
 
 export default usersReducer;
