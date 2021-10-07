@@ -3,7 +3,6 @@ import { Input, profileDataForm, Textarea } from "../../../Validate/FormsControl
 import s from './../ProfileInfo.module.css';
 
 const ProfileForm = ({ editModeFalse, profile, cancelSending }) => {
-    debugger
     return (
         <div>
             <Form

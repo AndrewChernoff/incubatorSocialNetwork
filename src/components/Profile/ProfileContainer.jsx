@@ -34,7 +34,6 @@ class ProfileContainer extends React.Component {
     }
 
     render() {
-        debugger
         return (
             <Profile {...this.props} saveProfile={this.props.saveProfile} status={this.props.status}
                 updateStatus={this.props.updateStatus} isOwner={!this.props.match.params.userId} invalidUrl={this.props.invalidUrl} />

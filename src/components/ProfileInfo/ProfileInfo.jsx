@@ -70,8 +70,8 @@ const ProfileContacts = ({ profile }) => {
     return (
         <div className={s.profileContacts}>
             <div className={s.profileContactsTitle}> Contacts: </div>
-            {Object.keys(profile.contacts).map(key => {
-                return <div key={key.id} className={s.contact}> {key}: {profile.contacts[key]} </div>
+            {Object.keys(profile.contacts).map(k => {
+                return <div key={k.toString()} className={s.contact}> {k}: {profile.contacts[k]} </div>
             })}
         </div>
     )

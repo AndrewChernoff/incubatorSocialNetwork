@@ -7,7 +7,7 @@ import React, { Suspense } from 'react';
 import { connect, Provider } from 'react-redux';
 import { initializeApp } from './redux/appReducer';
 import Prelouder from './components/common/Prelouder';
-import { Switch, withRouter } from 'react-router';
+import { Redirect, Switch, withRouter } from 'react-router';
 import { compose } from 'redux'
 import store from './redux/redux-store';
 
@@ -27,7 +27,7 @@ class App extends React.Component {
     if (!this.props.initialized) {
       return <Prelouder />
     }
-
+    debugger
     return (
       <div className='app-wrapper'>
         <HeaderContainer />
@@ -35,6 +35,7 @@ class App extends React.Component {
         <div className='app-wrapper-content'>
           <Suspense fallback={<div>Loading...</div>}>
             <Switch>
+              <Route exact path='/' render={() => <Redirect to='/profile' />} />
               <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
               <Route path='/dialogs' render={() => <DialogsContainer />} />
               <Route path='/news' render={() => <News />} />
@@ -42,8 +43,10 @@ class App extends React.Component {
               <Route path='/settings' render={() => <Settings />} />
               <Route path='/users' render={() => <UsersContainer />} />
               <Route path='/login' render={() => <LoginPage />} />
+              <Route path='/*' render={() => <div> 404 NOT FOUND</div>} />
             </Switch>
           </Suspense>
+          {this.props.statusError && alert('SOME ERROR OCCURED')}
         </div>
       </div>
     )
@@ -52,7 +55,8 @@ class App extends React.Component {
 
 let mapStateToProps = (state) => {
   return {
-    initialized: state.app.isInitialized
+    initialized: state.app.isInitialized,
+    statusError: state.profileComponent.statusError
   }
 }
 

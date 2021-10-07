@@ -32,8 +32,10 @@ let authReducer = (state = initialState, action) => {
                 ...state,
                 captcha: action.loginCaptcha
             }
+        default:
+            return state
     }
-    return state;
+
 }
 
 export const setUserAuthData = (id, email, login, isAuth) => ({ type: SET_USER_DATA, data: { id, email, login, isAuth } });
@@ -56,17 +58,13 @@ export const loginUser = (email, password, rememberMe, captcha) => async (dispat
     if (data.data.resultCode === 0) {
         dispatch(getAuthUserData());
     } else if (data.data.resultCode === 1) {
-        debugger
         dispatch(wrongAuth(true));
     } else if (data.data.resultCode === 10) {
-        debugger
         dispatch(captchaUrl());
     }
 }
-debugger
-//////error in request
+
 export const captchaUrl = () => (dispatch) => {
-    debugger
     securityAPI.getCaptcha().then(response => {
         dispatch(captchaSuccess(response.data.url))
     }

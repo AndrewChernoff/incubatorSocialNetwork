@@ -7,6 +7,7 @@ const DELETE_POST = 'DELETE_POST';
 const UPLOAD_PHOTO = 'UPLOAD_PHOTO';
 const SAVE_PROFILE = 'SAVE_PROFILE';
 const INVALID_URL = 'INVALID_URL';
+const STATUS_ERROR = 'STATUS_ERROR';////
 
 let initialState = {
   posts: [
@@ -15,7 +16,8 @@ let initialState = {
   ],
   userProfile: null,
   status: '',
-  invalidUrl: null
+  invalidUrl: null,
+  statusError: false
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -75,6 +77,13 @@ const profileReducer = (state = initialState, action) => {
       }
     }
 
+    case STATUS_ERROR: {
+      return {
+        ...state,
+        statusError: action.statusError
+      }
+    }
+
     default: return state;
   }
 }
@@ -87,6 +96,7 @@ export const deletePost = (postId) => ({ type: DELETE_POST, postId });
 export const uploadPhotoSuccess = (photo) => ({ type: UPLOAD_PHOTO, photo });
 export const saveProfileSucces = (profileData) => ({ type: SAVE_PROFILE, profileData });
 export const invalidUrl = (invalidUrl) => ({ type: INVALID_URL, invalidUrl });
+export const statusError = (statusError) => ({ type: STATUS_ERROR, statusError });///
 
 export const getUserProfile = (userId) => async (dispatch) => {
   let response = await usersAPI.getProfile(userId)
@@ -99,10 +109,25 @@ export const getUserStatus = (userId) => async (dispatch) => {
 }
 
 export const updateStatus = (status) => async (dispatch) => {
-  let response = await profileAPI.updateStatus(status)
-  if (response.data.resultCode === 0) {
-    dispatch(setUserStatus(status));
+  try {
+    let response = await profileAPI.updateStatus(status)
+    if (response.data.resultCode === 0) {
+      dispatch(setUserStatus(status));
+    }
+  } catch (error) {
+    debugger
+    setTimeout(() => {
+      dispatch(setStatusError(true))///thunk for modal window
+    }, 1000)
+
+    setTimeout(() => {
+      dispatch(setStatusError(false))///thunk for modal window
+    }, 5000)
   }
+}
+
+export const setStatusError = (errorStatus) => (dispatch) => {
+  dispatch(statusError(errorStatus)) /// thunk for modal window
 }
 
 export const uploadPhoto = (photo) => async (dispatch) => {
